@@ -4,13 +4,12 @@ import urllib2
 import logging
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(levelname)5.5s : %(message)s',
 
 )
 
 log = logging.getLogger()
-
 
 class Browser:
     def __init__(self, base_url, headers={}):
@@ -20,19 +19,35 @@ class Browser:
 
     def __request(self, request):
         pr = {
+            'method': request.get_method(),
             'url': request.get_full_url(),
             'data': request.get_data(),
             'headers': request.headers
         }
         log.debug('Request:{}'.format(pr))
-        response = self.test_opener.open(request)
+        try:
+            response = self.test_opener.open(request)
+        except urllib2.HTTPError as e:
+            log.error('Failed Request ({})              : {} {}, because: {}'.format(e.code,pr['method'],pr['url'],e.reason))
+            return dict(code=600)
+        except urllib2.URLError as e:
+            log.error('Failed Request ({})              : {} {}, because: {}'.format(e.code,pr['method'],pr['url'],e.reason))
+            return dict(code=601)
+        except httplib.HTTPException as e:
+            log.error('Failed Request (HTTPException)   : {} {}'.format(pr['method'],pr['url']))
+            return dict(code=602)
+        except Exception as e:
+            log.error('Failed Request                   : {} {}'.format(pr['method'],pr['url']))
+            return dict(code=603)
+
         r_data = {
             'url': response.geturl(),
             'code': response.code,
-            'headers': response.info(),
+            'headers': response.info().headers,
             'content': response.read()
         }
         log.debug('Response:{}'.format(r_data))
+        log.info('Request Successful for            : {} {} ({})'.format(pr['method'],pr['url'],r_data['code']))
         return r_data
 
     def get(self, uri):
@@ -48,3 +63,4 @@ if __name__ == '__main__':
 
     b.get('file')
     b.get('blog/12')
+
