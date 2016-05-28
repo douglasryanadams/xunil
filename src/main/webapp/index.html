@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xunil</title>
+
+    <link rel="stylesheet" href="style/style.css">
+    <script src="lib/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="body_wrapper">
+    <h1>Welcome to Xunil.</h1>
+
+    <p>
+        Open source tools for encrypted communication.
+    </p>
+    <hr>
+    <div id="chat_display"></div>
+    <textarea id="chat_input"></textarea>
+    <button id="submit">Submit</button>
+    <script>
+        var socket = new WebSocket("ws://localhost:8080/chat");
+        var submit_event = function () {
+            var chat_input = $('#chat_input').val();
+            socket.send(chat_input);
+        };
+        var message_callback = function () {
+
+        };
+        $('#submit').click(submit_event);
+        socket.onmessage = function (event) {
+            var message = event.data;
+            $('#chat_display').append(message);
+        };
+    </script>
+</div>
+
+</body>
+</html>

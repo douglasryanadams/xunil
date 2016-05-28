@@ -1,7 +1,7 @@
-package com.xunil.web.main;
+package io.xunil.web.main;
 
-import com.xunil.web.presentation.BlogURI;
-import com.xunil.web.presentation.FileURI;
+import io.xunil.web.presentation.uri.BlogURI;
+import io.xunil.web.presentation.uri.FileURI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,10 +15,11 @@ import java.util.Set;
  * Created by on 5/17/16.
  */
 
-@ApplicationPath("/")
+@ApplicationPath("api")
 public class XunilApplication extends Application {
 
-    private static final Logger log = LogManager.getLogger(XunilApplication.class.getName());
+    private static final Logger log = LogManager.getLogger(XunilApplication.class);
+
 
     @Override
     public Set<Class<?>> getClasses() {

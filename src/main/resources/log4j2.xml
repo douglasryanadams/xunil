@@ -10,7 +10,7 @@
     </Appenders>
     <Loggers>
         <Root level="debug">
-            <AppenderRef ref="Detailed_File" level="info"/>
+            <AppenderRef ref="Detailed_File" level="debug"/>
             <AppenderRef ref="Condensed_Console"/>
         </Root>
     </Loggers>

@@ -61,6 +61,8 @@ class Browser:
 if __name__ == '__main__':
     b = Browser('http://localhost:8080')
 
-    b.get('file')
-    b.get('blog/12')
+    b.get('')
+    b.get('index.html')
+    b.get('api/file')
+    b.get('api/blog/1')
 

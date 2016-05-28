@@ -1,4 +1,4 @@
-package com.xunil.web.presentation;
+package io.xunil.web.presentation.uri;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

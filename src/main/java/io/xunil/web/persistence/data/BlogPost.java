@@ -1,7 +1,8 @@
-package com.xunil.web.persistence.data;
+package io.xunil.web.persistence.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Table(name = "blog_post")
 public class BlogPost {
 
+    @Id
     @Column(name = "id")
     private Integer id;
 

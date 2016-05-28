@@ -1,4 +1,4 @@
-package com.xunil.web.persistence.data;
+package io.xunil.web.persistence.data;
 
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
