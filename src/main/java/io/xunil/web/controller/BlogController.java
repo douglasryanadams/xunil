@@ -2,8 +2,7 @@ package io.xunil.web.controller;
 
 import io.xunil.web.persistence.PersistenceMaster;
 import io.xunil.web.persistence.controller.BlogPostPersistenceController;
-import io.xunil.web.persistence.data.BlogPost;
-import io.xunil.web.presentation.model.BlogPostAPI;
+import io.xunil.web.presentation.model.BlogPost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,10 +19,8 @@ public class BlogController {
         this.dbController = persistenceMaster.getBlogPostController();
     }
 
-    public BlogPostAPI read(Integer id) {
+    public BlogPost read(Integer id) {
         log.info("Reading Blog Post with ID: {}", id);
-        BlogPost dbBlogPost = dbController.read(id);
-        BlogPostAPI blogPostAPI = new BlogPostAPI(dbBlogPost);
-        return blogPostAPI;
+        return new BlogPost(dbController.read(id));
     }
 }

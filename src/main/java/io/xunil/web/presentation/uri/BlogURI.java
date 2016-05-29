@@ -3,7 +3,7 @@ package io.xunil.web.presentation.uri;
 import io.xunil.web.controller.BlogController;
 import io.xunil.web.main.Xunil;
 import io.xunil.web.persistence.PersistenceMaster;
-import io.xunil.web.presentation.model.BlogPostAPI;
+import io.xunil.web.presentation.model.BlogPost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +39,7 @@ public class BlogURI {
     @Path("{id}")
     public Response getBlog(@PathParam("id") Integer id) {
         log.debug("    Request: GET {}", uri.getAbsolutePath());
-        BlogPostAPI r = controller.read(id);
+        BlogPost r = controller.read(id);
         return Response.ok(r).build();
     }
 

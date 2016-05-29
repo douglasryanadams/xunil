@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "blog_post")
-public class BlogPost {
+public class BlogPostTable {
 
     @Id
     @Column(name = "id")
@@ -63,7 +63,7 @@ public class BlogPost {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BlogPost blogPost = (BlogPost) o;
+        BlogPostTable blogPost = (BlogPostTable) o;
         return Objects.equals(
                 id,
                 blogPost.id
@@ -94,7 +94,7 @@ public class BlogPost {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BlogPost{");
+        final StringBuilder sb = new StringBuilder("BlogPostTable{");
         sb.append("id=")
           .append(id);
         sb.append(", content='")

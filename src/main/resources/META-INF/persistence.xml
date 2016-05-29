@@ -8,7 +8,7 @@
     <persistence-unit name="xunil" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <non-jta-data-source>java:comp/env/jdbc/xunil</non-jta-data-source>
-        <class>io.xunil.web.persistence.data.BlogPost</class>
+        <class>io.xunil.web.persistence.data.BlogPostTable</class>
     </persistence-unit>
 
 </persistence>

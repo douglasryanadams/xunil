@@ -1,6 +1,6 @@
 package io.xunil.web.persistence.controller;
 
-import io.xunil.web.persistence.data.BlogPost;
+import io.xunil.web.persistence.data.BlogPostTable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,10 +16,10 @@ public class BlogPostPersistenceController {
       this.emf = emf;
    }
 
-   public BlogPost read(Integer id) {
+   public BlogPostTable read(Integer id) {
       EntityManager em = emf.createEntityManager();
       try {
-         return em.find(BlogPost.class, id);
+         return em.find(BlogPostTable.class, id);
       }
       finally {
          if (em.isOpen()) em.close();
