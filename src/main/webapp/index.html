@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="style/style.css">
     <script src="lib/jquery.min.js"></script>
+    <script src="script/chat.js"></script>
 </head>
 <body>
 
@@ -16,24 +17,17 @@
         Open source tools for encrypted communication.
     </p>
     <hr>
-    <div id="chat_display"></div>
-    <textarea id="chat_input"></textarea>
-    <button id="submit">Submit</button>
-    <script>
-        var socket = new WebSocket("ws://localhost:8080/chat");
-        var submit_event = function () {
-            var chat_input = $('#chat_input').val();
-            socket.send(chat_input);
-        };
-        var message_callback = function () {
-
-        };
-        $('#submit').click(submit_event);
-        socket.onmessage = function (event) {
-            var message = event.data;
-            $('#chat_display').append(message);
-        };
-    </script>
+    <div>
+        <div id="chat_display"></div>
+        <form id="chat_form" action="javascript:void(0)">
+            <textarea id="chat_input" form="chat_form"></textarea>
+            <br> <!-- TODO Clean all this up -->
+            <label>Recipient ID:</label><input type="text" id="message_recipient">
+            <br>
+            <input type="submit">Submit</input>
+            My ID: <span id="my_id">&nbsp;</span>
+        </form>
+    </div>
 </div>
 
 </body>

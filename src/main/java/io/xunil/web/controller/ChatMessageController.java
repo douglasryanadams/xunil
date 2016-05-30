@@ -35,7 +35,8 @@ public class ChatMessageController {
     public void processMessage(ChatMessage message) {
         String target_id = message.getTo();
         Session session = sessions.getSession(target_id);
-        session.getAsyncRemote().sendText(message.getContent());
+        message.setTo(null);
+        session.getAsyncRemote().sendText(JSON.getString(message));
         log.debug("    sent chat message to target");
     }
 }

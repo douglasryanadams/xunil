@@ -25,7 +25,7 @@ public class XunilApplication extends Application {
     public Set<Class<?>> getClasses() {
         log.info("Loading web app classes");
         Set<Class<?>> classes = super.getClasses();
-        if (classes == null || classes.size() == 0) classes = new HashSet<Class<?>>();
+        if (classes == null || classes.size() == 0) classes = new HashSet<>();
         log.info("    Loading Resources");
         log.debug("      - BlogURI");
         classes.add(BlogURI.class);
