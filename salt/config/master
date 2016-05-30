@@ -1,0 +1,10 @@
+interface: 162.243.146.65
+
+file_roots:
+    base:
+        - /srv/salt
+
+pillar_roots:
+    base:
+        - /srv/pillar
+
