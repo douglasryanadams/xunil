@@ -63,6 +63,5 @@ if __name__ == '__main__':
 
     b.get('')
     b.get('index.html')
-    b.get('api/file')
     b.get('api/blog/1')
 

@@ -6,13 +6,11 @@ Socket.prototype.connect = function (domain) {
     this.socket = new WebSocket("ws://" + domain + "/chat");
     this.socket.onmessage = function (event) {
         var message = JSON.parse(event.data);
-        console.log("Message: ");
-        console.log(message);
         $('#chat_display').append(
-            message["content"] + "<br><br>"
+            message["content"] + "<br>"
         );
         if (message["to"]) {
-            $('#my_id').val(message["to"]);
+            $('#my_id').html(message["to"]);
         }
     }
 };
@@ -33,7 +31,9 @@ ChatForm.prototype.init = function () {
             "content": $('#chat_input').val(),
             "to": $('#message_recipient').val()
         };
+        $('#chat_input').val("");
         socket.sendMessage(JSON.stringify(message));
+
     };
 
     $('#chat_form').submit(submit_event);

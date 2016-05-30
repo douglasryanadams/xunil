@@ -17,15 +17,17 @@
         Open source tools for encrypted communication.
     </p>
     <hr>
-    <div>
+    <div class="chat_window">
+        <div class="chat_header">
+            My ID: <span id="my_id">&nbsp;</span>
+        </div>
         <div id="chat_display"></div>
         <form id="chat_form" action="javascript:void(0)">
-            <textarea id="chat_input" form="chat_form"></textarea>
+            <textarea type="text" id="chat_input" form="chat_form"></textarea>
             <br> <!-- TODO Clean all this up -->
-            <label>Recipient ID:</label><input type="text" id="message_recipient">
+            <label class="recipient_id">Recipient ID:</label><input type="text" id="message_recipient">
             <br>
-            <input type="submit">Submit</input>
-            My ID: <span id="my_id">&nbsp;</span>
+            <input type="submit" value="Send">
         </form>
     </div>
 </div>
