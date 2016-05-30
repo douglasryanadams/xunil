@@ -10,11 +10,17 @@ import java.util.Map;
 
 /**
  * Created on 5/28/16.
+ *
+ * This class stores and handles websocket sessions.
+ *
+ * There are two Maps of IDs because I want to keep the user's UUID session ID and
+ *  the actual ID of the session (normally a small integer) abstracted from one another.
  */
 public class Sessions {
 
     private static final Logger log = LogManager.getLogger(Sessions.class);
-    private static Map<String, Session> sessions = new HashMap<String, Session>();
+    private static Map<String, Session> sessions = new HashMap<>();
+    private static Map<String, String> sessionTracker = new HashMap<>();
     private static Sessions self = new Sessions();
 
     private Sessions() {}
@@ -29,9 +35,12 @@ public class Sessions {
 
     public void addSession(String id, Session session) {
         sessions.put(id, session);
+        sessionTracker.put(session.getId(), id);
     }
 
-    public void closeSession(String id) {
+    public void closeSession(String sessionId) {
+        String id = sessionTracker.get(sessionId);
+        if (id == null) return;
         Session session = sessions.get(id);
         if (session == null) return;
         if (session.isOpen()) {
@@ -46,5 +55,6 @@ public class Sessions {
             }
         }
         sessions.remove(id);
+        sessionTracker.remove(sessionId);
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <Console name="Condensed_Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="| %d{HH:mm:ss.SSS} |-( %20.20t )-[ %22.22logger{36} ] -- %5level : %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Condensed_Console" level="debug"/>
+        </Root>
+    </Loggers>
+</Configuration>
