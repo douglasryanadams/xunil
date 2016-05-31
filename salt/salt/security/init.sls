@@ -89,7 +89,7 @@ dns_response_tcp:
         - sport: 53
         - connstate: ESTABLISHED
 
-http_input:
+http_input_request:
     iptables.append:
         - table: filter
         - chain: INPUT
@@ -101,7 +101,19 @@ http_input:
         - dport: 80
         - connstate: NEW,ESTABLISHED
 
-http_output:
+http_input_response:
+    iptables.append:
+        - table: filter
+        - chain: INPUT
+        - jump: ACCEPT
+        - match: 
+            - tcp
+            - state
+        - proto: tcp 
+        - sport: 80
+        - connstate: ESTABLISHED
+
+http_out_response:
     iptables.append:
         - table: filter
         - chain: OUTPUT
@@ -111,9 +123,21 @@ http_output:
             - state
         - proto: tcp 
         - sport: 80
+        - connstate: ESTABLISHED
+
+http_out_request:
+    iptables.append:
+        - table: filter
+        - chain: OUTPUT
+        - jump: ACCEPT
+        - match: 
+            - tcp
+            - state
+        - proto: tcp 
+        - dport: 80
         - connstate: NEW,ESTABLISHED
 
-https_input:
+https_in_request:
     iptables.append:
         - table: filter
         - chain: INPUT
@@ -125,7 +149,19 @@ https_input:
         - dport: 443
         - connstate: NEW,ESTABLISHED
 
-https_output:
+https_in_response:
+    iptables.append:
+        - table: filter
+        - chain: INPUT
+        - jump: ACCEPT
+        - match: 
+            - tcp
+            - state
+        - proto: tcp 
+        - sport: 443
+        - connstate: ESTABLISHED
+
+https_out_response:
     iptables.append:
         - table: filter
         - chain: OUTPUT
@@ -135,6 +171,18 @@ https_output:
             - state
         - proto: tcp 
         - sport: 443
+        - connstate: ESTABLISHED
+
+https_out_request:
+    iptables.append:
+        - table: filter
+        - chain: OUTPUT
+        - jump: ACCEPT
+        - match: 
+            - tcp
+            - state
+        - proto: tcp 
+        - dport: 443
         - connstate: NEW,ESTABLISHED
 
 default_in:
