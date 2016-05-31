@@ -5,6 +5,19 @@
         - group: root
         - mode: 400
 
+/etc/sysctl.conf:
+    file.managed:
+        - source: salt://security/sysctl.conf
+        - user: root
+        - group: root
+        - mode: 400
+
+update_if_sysctl_changes:
+    cmd.run:
+        - name: sysctl -p
+        - onchanges:
+            - file: /etc/sysctl.conf
+
 localhost_in:
     iptables.append:
         - table: filter
