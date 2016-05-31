@@ -18,8 +18,10 @@ public class PersistenceMaster implements PersistenceMasterInterface {
     private static PersistenceControllerContainer persistenceControllerContainer;
 
     public PersistenceMaster(String persistenceUnit) {
+        log.info("Constructing Persistence Master");
         emf = Persistence.createEntityManagerFactory(persistenceUnit);
         persistenceControllerContainer = new PersistenceControllerContainer();
+        log.debug("    persistence master ready");
     }
 
     public BlogPostPersistenceController getBlogPostController() {
