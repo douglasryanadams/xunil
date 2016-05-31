@@ -1,6 +1,7 @@
 tomcat8_installed:
     pkg.installed:
         - pkgs:
+            - haveged
             - tomcat8
             - authbind
 
