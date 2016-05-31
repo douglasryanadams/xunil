@@ -4,7 +4,7 @@ import urllib2
 import logging
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(levelname)5.5s : %(message)s',
 
 )

@@ -21,7 +21,6 @@ public class PersistenceMaster implements PersistenceMasterInterface {
         log.info("Constructing Persistence Master");
         emf = Persistence.createEntityManagerFactory(persistenceUnit);
         persistenceControllerContainer = new PersistenceControllerContainer();
-        log.debug("    persistence master ready");
     }
 
     public BlogPostPersistenceController getBlogPostController() {

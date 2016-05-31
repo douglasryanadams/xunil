@@ -14,11 +14,10 @@ import java.util.Set;
  * Created by on 5/17/16.
  */
 
-@ApplicationPath("api")
+@ApplicationPath("/api")
 public class XunilApplication extends Application {
 
     private static final Logger log = LogManager.getLogger(XunilApplication.class);
-
 
     @Override
     public Set<Class<?>> getClasses() {

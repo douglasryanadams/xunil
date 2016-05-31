@@ -99,6 +99,11 @@
             <version>${eclipselink.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
             <version>${jersey.version}</version>
@@ -118,8 +123,6 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.2.12</version>
         </dependency>
-
-
 
         <!-- Persistence -->
         <dependency>
@@ -146,7 +149,6 @@
         </dependency>
 
         <!-- Test -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

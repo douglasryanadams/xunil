@@ -25,7 +25,7 @@ var ChatForm = function (socket) {
 
 ChatForm.prototype.init = function () {
     var socket = this.socket;
-    socket.connect("localhost:8080");
+    socket.connect(config["hostname"] + ":" + config["port"]);
     var submit_event = function () {
         var message = {
             "content": $('#chat_input').val(),
