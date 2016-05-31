@@ -21,7 +21,7 @@ localhost_out:
         - out-interface: lo
         - save: True
 
-ssh_in:
+ssh_in_request:
     iptables.append:
         - table: filter
         - chain: INPUT
@@ -31,7 +31,17 @@ ssh_in:
         - dport: 22
         - save: True
 
-ssh_out:
+ssh_in_response:
+    iptables.append:
+        - table: filter
+        - chain: INPUT
+        - jump: ACCEPT
+        - match: tcp
+        - proto: tcp
+        - sport: 22
+        - save: True
+
+ssh_out_response:
     iptables.append:
         - table: filter
         - chain: OUTPUT 
@@ -39,6 +49,16 @@ ssh_out:
         - match: tcp
         - proto: tcp
         - sport: 22
+        - save: True
+
+ssh_out_request:
+    iptables.append:
+        - table: filter
+        - chain: OUTPUT 
+        - jump: ACCEPT
+        - match: tcp
+        - proto: tcp
+        - dport: 22
         - save: True
 
 dns_request_udp:
