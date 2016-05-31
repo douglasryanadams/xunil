@@ -4,16 +4,20 @@
   <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+  <!--
   <GlobalNamingResources>
   </GlobalNamingResources>
+  -->
   <Service name="Catalina">
     <Connector port="80" protocol="HTTP/1.1"
                connectionTimeout="20000"
                URIEncoding="UTF-8"
                redirectPort="443" />
     <Engine name="Catalina" defaultHost="localhost">
+      <!--
       <Realm className="org.apache.catalina.realm.LockOutRealm">
       </Realm>
+      -->
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
