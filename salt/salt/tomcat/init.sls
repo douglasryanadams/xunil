@@ -1,6 +1,8 @@
 tomcat8_installed:
     pkg.installed:
-        - name: tomcat8
+        - pkgs:
+            - tomcat8
+            - authbind
 
 /etc/tomcat8/server.xml:
     file.managed:
@@ -9,9 +11,25 @@ tomcat8_installed:
         - group: tomcat8
         - mode: 400
 
+/etc/tomcat8/logging.properties:
+    file.managed:
+        - source: salt://tomcat/logging.properties
+        - user: tomcat8
+        - group: tomcat8
+        - mode: 400
+
+/etc/default/tomcat8:
+    file.managed:
+        - source: salt://tomcat/tomcat8.default_file
+        - user: tomcat8
+        - group: root
+        - mode: 440
+
 tomcat8_runs:
     service.running:
         - name: tomcat8
         - enable: true
         - watch:
             - file: /etc/tomcat8/server.xml
+            - file: /etc/tomcat8/logging.properties
+            - file: /etc/default/tomcat8

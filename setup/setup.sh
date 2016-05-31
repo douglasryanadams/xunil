@@ -9,6 +9,9 @@ sudo add-apt-repository ppa:saltstack/salt
 sudo apt-get update
 sudo apt-get install salt-minion salt-master
 
+sudo add-apt-repository --remove ppa:saltstack/salt
+sudo apt-get update
+
 cd /etc/salt
 
 sudo rm -r master minion
