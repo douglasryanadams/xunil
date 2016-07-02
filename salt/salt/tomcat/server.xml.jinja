@@ -6,18 +6,20 @@
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
   <Service name="Catalina">
-    <Connector port="80" protocol="HTTP/1.1"
-        connectionTimeout="20000"
-        URIEncoding="UTF-8"
+    <Connector port="80"
+        enableLookups="false"
         redirectPort="443" />
     <Connector
         protocol="org.apache.coyote.http11.Http11AprProtocol"
-        port="8443" maxThreads="200"
-        scheme="https" secure="true" SSLEnabled="true"
+        port="443"
+        maxThreads="200"
+        scheme="https" 
+        secure="true" 
+        SSLEnabled="true"
         SSLCertificateFile="/etc/ssl/certs/xunil.cert"
         SSLCACertificateFile="/etc/ssl/certs/xunil.intermediate.ca"
         SSLCertificateKeyFile="/etc/ssl/private/xunil.key"
-        SSLVerifyClient="optional" SSLProtocol="TLSv1+TLSv1.1+TLSv1.2"/>
+        SSLProtocol="all"/>
     <Engine name="Catalina" defaultHost="localhost">
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
