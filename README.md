@@ -1,4 +1,4 @@
-Xunil.io wants to provide encrypted anonymous communication cools direct from a browser.
+Xunil.io wants to provide encrypted anonymous communication tools direct from a browser.
 
 Current Features:
 -----------------

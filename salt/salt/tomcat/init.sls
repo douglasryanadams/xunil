@@ -5,6 +5,27 @@ tomcat8_installed:
             - tomcat8
             - authbind
 
+/etc/ssl/certs/xunil.intermediate.ca:
+    file.managed:
+        - source: salt://tomcat/public_certs/xunil.intermediate.ca
+        - user: root
+        - group: root
+        - mode: 400
+
+/etc/ssl/certs/xunil.intermediate.cert:
+    file.managed:
+        - source: salt://tomcat/public_certs/xunil.cert
+        - user: root
+        - group: root
+        - mode: 400
+
+/etc/ssl/private/xunil.key:
+    file.managed:
+        - source: pillar://certificates/xunil.key
+        - user: root
+        - group: root
+        - mode: 400
+
 /etc/tomcat8/server.xml:
     file.managed:
         - source: salt://tomcat/server.xml.jinja
