@@ -4,26 +4,33 @@ tomcat8_installed:
             - haveged
             - tomcat8
             - authbind
+            - libtcnative-1
 
 /etc/ssl/certs/xunil.intermediate.ca:
     file.managed:
         - source: salt://tomcat/public_certs/xunil.intermediate.ca
         - user: root
-        - group: root
-        - mode: 400
+        - group: tomcat8
+        - mode: 440
 
-/etc/ssl/certs/xunil.intermediate.cert:
+/etc/ssl/certs/xunil.cert:
     file.managed:
         - source: salt://tomcat/public_certs/xunil.cert
         - user: root
-        - group: root
-        - mode: 400
+        - group: tomcat8
+        - mode: 440
+
+/etc/ssl/private:
+    file.directory:
+        - user: root
+        - group: tomcat8
+        - mode: 550
 
 /etc/ssl/private/xunil.key:
     file.managed:
         - user: root
-        - group: root
-        - mode: 400
+        - group: tomcat8
+        - mode: 440
         - contents: {{ salt['pillar.get']('ssl_key:xunil_key') | yaml_encode }}
 
 /etc/tomcat8/server.xml:
