@@ -3,7 +3,7 @@ var Socket = function () {
 };
 
 Socket.prototype.connect = function (domain) {
-    this.socket = new WebSocket("ws://" + domain + "/chat");
+    this.socket = new WebSocket("wss://" + domain + "/chat");
     this.socket.onmessage = function (event) {
         var message = JSON.parse(event.data);
         $('#chat_display').append(
