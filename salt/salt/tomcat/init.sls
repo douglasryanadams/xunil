@@ -21,7 +21,7 @@ tomcat8_installed:
 
 /etc/ssl/private/xunil.key:
     file.managed:
-        - contents: {{ salt[pillar.get]('ssl_key:xunil_key') }}
+        - contents: "{{ salt['pillar.get']('ssl_key:xunil_key') }}"
         - user: root
         - group: root
         - mode: 400

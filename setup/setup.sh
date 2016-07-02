@@ -20,9 +20,7 @@ sudo ln -s /home/rook/xunil/salt/config/minion
 
 cd /srv
 sudo ln -s /home/rook/xunil/salt/salt
-
-sudo mkdir -p /srv/pillar
-sudo cp -R /home/rook/xunil-private/certificates /srv/pillar/certificates
+sudo ln -s /home/rook/xunil-private/salt/pillar
 
 sudo systemctl restart salt-master
 sudo systemctl restart salt-minion
