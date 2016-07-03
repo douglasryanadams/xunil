@@ -1,6 +1,7 @@
 package io.xunil.web.main;
 
 import io.xunil.web.presentation.uri.BlogURI;
+import io.xunil.web.presentation.uri.ChatURI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +28,8 @@ public class XunilApplication extends Application {
         log.info("    Loading Resources");
         log.debug("      - BlogURI");
         classes.add(BlogURI.class);
+        log.debug("      - ChatURI");
+        classes.add(ChatURI.class);
         return classes;
     }
 

@@ -8,9 +8,17 @@ import java.util.Objects;
  */
 @XmlRootElement
 public class ChatMessage {
+    private String type;
     private String to;
     private String content; // See if I can make this binary later
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getTo() {
         return to;
@@ -33,19 +41,21 @@ public class ChatMessage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChatMessage that = (ChatMessage) o;
-        return Objects.equals(to, that.to) &&
+        return Objects.equals(type, that.type) &&
+                Objects.equals(to, that.to) &&
                 Objects.equals(content, that.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(to, content);
+        return Objects.hash(type, to, content);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ChatMessage{");
-        sb.append("to='").append(to).append('\'');
+        sb.append("type='").append(type).append('\'');
+        sb.append(", to='").append(to).append('\'');
         sb.append(", content='").append(content).append('\'');
         sb.append('}');
         return sb.toString();

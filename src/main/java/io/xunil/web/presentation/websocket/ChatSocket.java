@@ -49,6 +49,6 @@ public class ChatSocket {
     public void handleMessage(String message, Session session) {
         log.debug("    Received Socket Message");
         ChatMessage chatMessage = JSON.getObject(message, ChatMessage.class);
-        controller.processMessage(chatMessage);
+        controller.processMessage(chatMessage, session);
     }
 }
