@@ -1,5 +1,11 @@
 Xunil.io wants to provide encrypted anonymous communication tools direct from a browser.
 
+Reference Material
+------------------
+
+- https://github.com/bitwiseshiftleft/sjcl/wiki/Asymmetric-Crypto
+
+
 Current Features:
 -----------------
 
@@ -9,7 +15,7 @@ Current Features:
 Roadmap:
 --------
 
-- [ ]Encrypted chat (See communication details below)
+- [ ] Encrypted chat (See communication details below)
     - [x] Generate asynchronous encryption Keys in Browser
     - [x] Enable handshake on server (provide public key to server)
     - [ ] Distribute public key to client who chooses recipient
