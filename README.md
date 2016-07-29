@@ -12,6 +12,12 @@ Current Features:
 - Targeted Chat
 - No usernames, no logins
 
+Bugs:
+-----
+
+- [ ] Roster not displayed on initial connect
+- [ ] Roster entries not correctly removed when browser window closes
+
 Roadmap:
 --------
 
