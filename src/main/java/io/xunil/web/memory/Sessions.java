@@ -1,12 +1,15 @@
 package io.xunil.web.memory;
 
+import io.xunil.web.exception.InconsistentDataException;
 import io.xunil.web.memory.model.ChatSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.websocket.Session;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,15 +21,21 @@ import java.util.Map;
  * the actual ID of the session (normally a small integer) abstracted from one another.
  */
 public class Sessions {
+    // Note: The storage mechanism here might make more sense as an in memory database in the future.
 
     private static final Logger log = LogManager.getLogger(Sessions.class);
     // UUID, ChatSession
-    private static Map<String, ChatSession> sessions = new HashMap<>();
+    private static Map<String, ChatSession> sessions;
     // WebSocket Session ID, UUID
-    private static Map<String, String> sessionTracker = new HashMap<>();
+    private static Map<String, String> sessionTracker;
+    private static List<String> visibleSessions;
     private static Sessions self = new Sessions();
 
-    private Sessions() {}
+    private Sessions() {
+        sessions = new HashMap<>();
+        sessionTracker = new HashMap<>();
+        visibleSessions = new ArrayList<>();
+    }
 
     public static Sessions getInstance() {
         return self;
@@ -42,6 +51,15 @@ public class Sessions {
 
     public void addWebsocketSessionId(String websocketSessionId, String chatSessionUUID) {
         sessionTracker.put(websocketSessionId, chatSessionUUID);
+    }
+
+    public void showSession(String id) {
+        if (sessions.containsKey(id)) visibleSessions.add(id);
+        else throw new InconsistentDataException("Attempted to make a non-existent session visible: " + id);
+    }
+
+    public void hideSession(String id) {
+        visibleSessions.remove(id);
     }
 
     public void closeSession(String websocketSessionId) {
@@ -64,6 +82,11 @@ public class Sessions {
             }
         }
         sessions.remove(chatSessionUUID);
+        visibleSessions.remove(chatSessionUUID); // Might need defensive check first
         sessionTracker.remove(websocketSessionId);
+    }
+
+    public List<String> getVisibleSessions() {
+        return visibleSessions;
     }
 }

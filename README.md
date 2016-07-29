@@ -20,7 +20,7 @@ Roadmap:
     - [x] Enable handshake on server (provide public key to server)
     - [ ] Distribute public key to client who chooses recipient
 - Allow users to opt in for:
-    - [ ] Display ID on roster
+    - [x] Display ID on roster
     - [ ] Display own messages in chat
 - Message Box
     - [ ] Create box for set amount of time

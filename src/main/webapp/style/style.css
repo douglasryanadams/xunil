@@ -20,13 +20,31 @@ body {
     padding-bottom: 10px;
 }
 
+#chat_body {
+}
+
 #chat_display {
-    width: 100%;
+    width: calc(100% - 306px);
     height: 400px;
     border: 1px solid #000;
     background-color: #FFF;
     color: #000;
     padding: 10px;
+    vertical-align: top;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#user_roster {
+    width: 300px;
+    height: 400px;
+    border: 1px solid #000;
+    background-color: #FFF;
+    color: #000;
+    padding: 10px;
+    font-size: 10px;
+    vertical-align: top;
+    display: inline-block;
     box-sizing: border-box;
 }
 

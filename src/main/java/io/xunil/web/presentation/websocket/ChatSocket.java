@@ -30,24 +30,24 @@ public class ChatSocket {
 
     @OnOpen
     public void open(Session session) {
-        log.info("Opening Socket.");
+        log.info("Opening Chat Socket.");
         controller.openChatHandshake(session);
     }
 
     @OnClose
     public void close(Session session) {
-        log.info("Closing Socket.");
+        log.info("Closing Chat Socket.");
         sessions.closeSession(session.getId());
     }
 
     @OnError
     public void onError(Throwable error) {
-        log.warn("Error with Socket: {}", error);
+        log.warn("Error with Chat Socket: {}", error);
     }
 
     @OnMessage
     public void handleMessage(String message, Session session) {
-        log.debug("    Received Socket Message");
+        log.debug("    Received Chat Socket Message");
         ChatMessage chatMessage = JSON.getObject(message, ChatMessage.class);
         controller.processMessage(chatMessage, session);
     }

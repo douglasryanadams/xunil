@@ -8,6 +8,13 @@
     <script src="lib/jquery.min.js"></script>
     <script src="lib/sjcl.js"></script>
     <script src="script/config.js"></script>
+    <script src="script/clientMemory.js"></script>
+    <script src="script/socket.js"></script>
+    <script src="script/chatSocket.js"></script>
+    <script src="script/rosterSocket.js"></script>
+    <script src="script/configController.js"></script>
+    <script src="script/keyMaster.js"></script>
+    <script src="script/restClient.js"></script>
     <script src="script/chat.js"></script>
 </head>
 <body>
@@ -25,7 +32,10 @@
         <div class="chat_header">
             My ID: <span id="my_id">&nbsp;</span>
         </div>
-        <div id="chat_display"></div>
+        <div id="chat_body">
+            <div id="chat_display"></div>
+            <div id="user_roster"></div>
+        </div>
         <form id="chat_form" action="javascript:void(0)">
             <textarea type="text" id="chat_input" form="chat_form"></textarea>
             <br> <!-- TODO Clean all this up -->
@@ -33,6 +43,7 @@
             <br>
             <input type="submit" value="Send">
         </form>
+        <input type="checkbox" id="show_me">Display my username in roster list
     </div>
 </div>
 
