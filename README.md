@@ -36,6 +36,7 @@ Roadmap:
 - Error Handling
     - [ ] Display error states to user with instructions
     - [ ] Alert user if sending to blank recipient
+    - [ ] Prevent entering text in chat box until connection
 
 Chat Communication Workflow:
 ----------------------------

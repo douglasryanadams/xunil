@@ -3,9 +3,9 @@
  */
 
 var clientMemory = {
-    "id" : "",
-    "privateKey" : null,
-    "publicKeys" : {
-    },
-    "showMyOwnMessages" : false
+    "id": "",
+    "privateKey": null,
+    "connectedTo": "",
+    "publicKey": "",
+    "showMyOwnMessages": false
 };

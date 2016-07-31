@@ -20,8 +20,8 @@ RestClient.prototype.register = function (publicKey, successCallback) {
     };
 
     var errorCallback = function (xhr, status, error) {
-        // TODO Show to user, make informative
-        console.log("ERROR: " + status + " | " + error);
+        // TODO make informative
+        ChatController.displayErrorMessage("ERROR: " + status + " | " + error);
     };
 
     $.ajax({
@@ -35,3 +35,24 @@ RestClient.prototype.register = function (publicKey, successCallback) {
     });
 };
 
+RestClient.prototype.chatConnect = function (myId, targetId, successCallback) {
+    var payload = {
+        "from": myId,
+        "connectWith": targetId
+    };
+
+    var errorCallback = function (xhr, status, error) {
+        // TODO make informative
+        ChatController.displayErrorMessage("ERROR: " + status + " | " + error);
+    };
+
+    $.ajax({
+        type: "POST",
+        url: this.baseUrl + "chat/connection",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(payload),
+        success: successCallback,
+        error: errorCallback
+    })
+};

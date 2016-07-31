@@ -9,13 +9,15 @@
     <script src="lib/sjcl.js"></script>
     <script src="script/config.js"></script>
     <script src="script/clientMemory.js"></script>
+    <script src="script/chatController.js"></script>
     <script src="script/socket.js"></script>
     <script src="script/chatSocket.js"></script>
     <script src="script/rosterSocket.js"></script>
     <script src="script/configController.js"></script>
     <script src="script/keyMaster.js"></script>
     <script src="script/restClient.js"></script>
-    <script src="script/chat.js"></script>
+    <script src="script/chatConnectionController.js"></script>
+    <script src="script/main.js"></script>
 </head>
 <body>
 
@@ -47,6 +49,8 @@
             <label>Recipient ID:</label>
             <input type="text" id="message_recipient">
             <input id="recipient_connect_submit" type="button" value="Connect">
+            <input id="recipient_connect_accept" type="button" value="Accept">
+            <input id="recipient_connect_reject" type="button" value="Reject">
             <input id="recipient_disconnect_submit" type="button" value="Disconnect">
         </div>
     </div>
