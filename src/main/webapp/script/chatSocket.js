@@ -14,7 +14,9 @@ ChatSocket.prototype.messageHandler = function (event) {
     var message = JSON.parse(event.data);
     switch (message["type"]) {
         case "chat":
-            ChatController.displayMessage(message["content"]);
+            var encryptedChatContent = message["content"];
+            var chatContent = Keymaster.decryptMessage(clientMemory["privateKey"], encryptedChatContent);
+            ChatController.displayMessage(chatContent);
             break;
         case "connectionRequest":
             $("#recipient_connect_submit").hide();

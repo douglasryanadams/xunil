@@ -28,21 +28,25 @@ ChatConnectionController.prototype.init = function () {
 
     $("#recipient_connect_submit").click(connectEvent);
 
-    var disconnectEvent = function () {
-        // TODO
+    var replyToChatConnect = function (messageType) {
+        var message = {
+            "type" : messageType
+        };
+        this.chatSocket.send(JSON.stringify(message));
     };
 
+    var disconnectEvent = function () {
+        replyToChatConnect("disconnectChat");
+    };
     $("#recipient_disconnect_submit").click(disconnectEvent);
 
     var acceptEvent = function () {
-        // TODO
+        replyToChatConnect("acceptChat");
     };
-
     $("#recipient_connect_accept").click(acceptEvent);
 
     var rejectEvent = function () {
-        // TODO
+        replyToChatConnect("rejectChat");
     };
-
     $("#recipient_connect_reject").click(rejectEvent);
 };

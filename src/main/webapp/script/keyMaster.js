@@ -2,13 +2,20 @@
  * Created on 7/21/16.
  */
 
-var KeyMaster = function () {
+var KeyMaster = {};
+
+KeyMaster.generateKeys = function () {
     var keys = sjcl.ecc.ecdsa.generateKeys(521);
-    this.publicKey = keys['pub'];
-    this.privateKey = keys['sec'];
+    return {
+        "publicKey" : keys["pub"],
+        "privateKey" : keys["sec"]
+    }
 };
 
-// TODO
-// KeyMaster.prototype.encryptMessage = function (message) {
-//     return encryptedMessage;
-// };
+KeyMaster.encryptMessage = function (publicKey, message) {
+    return sjcl.encrypt(publicKey, message);
+};
+
+KeyMaster.decryptMessage = function (privateKey, encryptedMessage) {
+    return sjcl.decrypt(privateKey, encryptedMessage);
+};

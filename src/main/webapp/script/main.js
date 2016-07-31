@@ -3,18 +3,19 @@ $(document).ready(function () {
     var chatSocket = new ChatSocket(domain);
     var rosterSocket = new RosterSocket(domain);
     var configController = new ConfigController(rosterSocket);
-    var keyMaster = new KeyMaster();
     var rest = new RestClient(domain);
     var chatConnectionController = new ChatConnectionController(rest, chatSocket);
+    var keys = KeyMaster.generateKeys();
+    clientMemory["privateKey"] = keys["privateKey"];
 
     var submitEvent = function () {
         var chatInput = $('#chat_input');
         var chatContent = chatInput.val();
-        // TODO add encryption
+        var encryptedChatContent = KeyMaster.encryptMessage(clientMemory["recipientPublicKey"], chatContent);
         var message = {
             "type": "chat",
             "to": clientMemory["connectedTo"],
-            "content": chatContent
+            "content": encryptedChatContent
         };
         chatSocket.sendMessage(JSON.stringify(message));
         chatInput.val("");
@@ -37,5 +38,5 @@ $(document).ready(function () {
         $("#chat_submit").click(submitEvent);
     };
 
-    rest.register(keyMaster.publicKey, registrationSuccessCallback);
+    rest.register(keys["publicKey"], registrationSuccessCallback);
 });
