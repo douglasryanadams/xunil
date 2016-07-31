@@ -14,9 +14,11 @@ ChatSocket.prototype.messageHandler = function (event) {
     var message = JSON.parse(event.data);
     switch (message["type"]) {
         case "chat":
-            $("#chat_display").append(
+            var chatDisplay = $("#chat_display");
+            chatDisplay.append(
                 message["content"] + "<br>"
             );
+            chatDisplay.scrollTop(chatDisplay.prop("scrollHeight"));
             break;
         case "registration":
             var msg = { "type" : "registration", "content" : clientMemory["id"]};

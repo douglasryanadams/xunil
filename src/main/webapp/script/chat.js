@@ -18,9 +18,11 @@ $(document).ready(function () {
         chatInput.val("");
 
         if (clientMemory["showMyOwnMessages"]) {
-            $("#chat_display").append(
+            var chatDisplay = $("#chat_display");
+            chatDisplay.append(
                 "<span class='my_own_message'>" + chatContent + "</span><br>"
             );
+            chatDisplay.scrollTop(chatDisplay.prop("scrollHeight"));
         }
     };
 
