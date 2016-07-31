@@ -1,7 +1,7 @@
 package io.xunil.web.presentation.uri;
 
 import io.xunil.web.controller.ChatController;
-import io.xunil.web.memory.Sessions;
+import io.xunil.web.memory.ChatSessions;
 import io.xunil.web.presentation.model.ChatRegistrationRequest;
 import io.xunil.web.presentation.model.ChatRegistrationResponse;
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +31,7 @@ public class ChatURI {
     @POST
     public Response postChatClient(ChatRegistrationRequest chatRegistration) {
         log.debug("    Request: POST {}", uri.getAbsolutePath());
-        ChatController controller = new ChatController(Sessions.getInstance());
+        ChatController controller = new ChatController(ChatSessions.getInstance());
         ChatRegistrationResponse response = controller.register(chatRegistration);
         return Response.ok(response).build();
     }

@@ -15,8 +15,8 @@ Current Features:
 Bugs:
 -----
 
-- [ ] Roster not displayed on initial connect
-- [ ] Roster entries not correctly removed when browser window closes
+- [x] Roster not displayed on initial connect
+- [x] Roster entries not correctly removed when browser window closes
 
 Roadmap:
 --------

@@ -1,6 +1,6 @@
 package io.xunil.web.controller;
 
-import io.xunil.web.memory.Sessions;
+import io.xunil.web.memory.ChatSessions;
 import io.xunil.web.presentation.model.ChatRegistrationRequest;
 import io.xunil.web.presentation.model.ChatRegistrationResponse;
 import io.xunil.web.memory.model.ChatSession;
@@ -16,9 +16,9 @@ import java.util.UUID;
 public class ChatController {
     private static final Logger log = LogManager.getLogger(ChatController.class);
 
-    private Sessions sessions;
+    private ChatSessions sessions;
 
-    public ChatController(Sessions sessions) {
+    public ChatController(ChatSessions sessions) {
         this.sessions = sessions;
     }
 

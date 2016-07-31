@@ -20,24 +20,24 @@ import java.util.Map;
  * There are two Maps of IDs because I want to keep the user's UUID session ID and
  * the actual ID of the session (normally a small integer) abstracted from one another.
  */
-public class Sessions {
+public class ChatSessions {
     // Note: The storage mechanism here might make more sense as an in memory database in the future.
 
-    private static final Logger log = LogManager.getLogger(Sessions.class);
+    private static final Logger log = LogManager.getLogger(ChatSessions.class);
     // UUID, ChatSession
     private static Map<String, ChatSession> sessions;
     // WebSocket Session ID, UUID
     private static Map<String, String> sessionTracker;
     private static List<String> visibleSessions;
-    private static Sessions self = new Sessions();
+    private static ChatSessions self = new ChatSessions();
 
-    private Sessions() {
+    private ChatSessions() {
         sessions = new HashMap<>();
         sessionTracker = new HashMap<>();
         visibleSessions = new ArrayList<>();
     }
 
-    public static Sessions getInstance() {
+    public static ChatSessions getInstance() {
         return self;
     }
 

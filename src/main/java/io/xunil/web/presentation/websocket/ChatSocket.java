@@ -1,7 +1,7 @@
 package io.xunil.web.presentation.websocket;
 
 import io.xunil.web.controller.ChatMessageController;
-import io.xunil.web.memory.Sessions;
+import io.xunil.web.memory.ChatSessions;
 import io.xunil.web.presentation.model.ChatMessage;
 import io.xunil.web.util.JSON;
 import org.apache.logging.log4j.LogManager;
@@ -18,13 +18,13 @@ import javax.websocket.server.ServerEndpoint;
 public class ChatSocket {
 
     private static final Logger log = LogManager.getLogger(ChatSocket.class);
-    private Sessions sessions;
+    private ChatSessions sessions;
     private ChatMessageController controller;
 
     public ChatSocket() {
         super();
         log.info("Constructing Chat Socket");
-        sessions = Sessions.getInstance();
+        sessions = ChatSessions.getInstance();
         controller = new ChatMessageController(sessions);
     }
 
