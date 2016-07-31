@@ -7,14 +7,21 @@ $(document).ready(function () {
     var rest = new RestClient(domain);
 
     var submit_event = function () {
-        var chat_content = $('#chat_input');
+        var chatInput = $('#chat_input');
+        var chatContent = chatInput.val();
         var message = {
             "type" : "chat",
             "to": $('#message_recipient').val(),
-            "content": chat_content.val()
+            "content": chatContent
         };
-        chat_content.val("");
         chatSocket.sendMessage(JSON.stringify(message));
+        chatInput.val("");
+
+        if (clientMemory["showMyOwnMessages"]) {
+            $("#chat_display").append(
+                "<span class='my_own_message'>" + chatContent + "</span><br>"
+            );
+        }
     };
 
     var registrationSuccessCallback = function (data) {
@@ -26,7 +33,7 @@ $(document).ready(function () {
         rosterSocket.connect();
         configController.init();
 
-        $('#chat_form').submit(submit_event);
+        $('#chat_submit').click(submit_event);
     };
 
     rest.register(keyMaster.publicKey, registrationSuccessCallback);

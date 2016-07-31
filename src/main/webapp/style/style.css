@@ -20,9 +20,6 @@ body {
     padding-bottom: 10px;
 }
 
-#chat_body {
-}
-
 #chat_display {
     width: calc(100% - 306px);
     height: 400px;
@@ -33,6 +30,12 @@ body {
     vertical-align: top;
     display: inline-block;
     box-sizing: border-box;
+    overflow: scroll;
+}
+
+.my_own_message {
+    font-style: italic;
+    color: #AAA;
 }
 
 #user_roster {
@@ -46,19 +49,31 @@ body {
     vertical-align: top;
     display: inline-block;
     box-sizing: border-box;
+    overflow: scroll;
 }
 
-.recipient_id {
+#chat_submit_wrapper {
+    float: right;
+    font-size: 12px;
+}
+
+#chat_input {
+    width: 100%;
+    height: 4rem;
+    border: 1px solid #111;
+    resize: none;
+    box-sizing: border-box;
+}
+
+#recipient_info {
+    float: left;
+    font-size: 12px;
 }
 
 #message_recipient {
     width: 300px;
 }
 
-#chat_input {
-    width: 100%;
-    height: 2rem;
-    border: 1px solid #111;
-    resize: none;
-    box-sizing: border-box;
+#recipient_disconnect_submit {
+    display: none;
 }

@@ -6,5 +6,6 @@ var clientMemory = {
     "id" : "",
     "privateKey" : null,
     "publicKeys" : {
-    }
+    },
+    "showMyOwnMessages" : false
 };

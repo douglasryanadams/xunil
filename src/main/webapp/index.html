@@ -31,19 +31,24 @@
     <div id="chat_window">
         <div class="chat_header">
             My ID: <span id="my_id">&nbsp;</span>
+            <input type="checkbox" id="show_me">Display my ID in roster list
         </div>
         <div id="chat_body">
             <div id="chat_display"></div>
             <div id="user_roster"></div>
         </div>
-        <form id="chat_form" action="javascript:void(0)">
-            <textarea type="text" id="chat_input" form="chat_form"></textarea>
-            <br> <!-- TODO Clean all this up -->
-            <label class="recipient_id">Recipient ID:</label><input type="text" id="message_recipient">
-            <br>
-            <input type="submit" value="Send">
-        </form>
-        <input type="checkbox" id="show_me">Display my username in roster list
+        <textarea type="text" id="chat_input"></textarea>
+        <div id="chat_submit_wrapper">
+            <input type="checkbox" id="enter_sends">Hit <span style="font-weight: bold;">Enter</span> to Send
+            <input type="checkbox" id="show_my_own_messages">Show my own messages
+            <input id="chat_submit" type="submit" value="Send">
+        </div>
+        <div id="recipient_info">
+            <label>Recipient ID:</label>
+            <input type="text" id="message_recipient">
+            <input id="recipient_connect_submit" type="button" value="Connect">
+            <input id="recipient_disconnect_submit" type="button" value="Disconnect">
+        </div>
     </div>
 </div>
 

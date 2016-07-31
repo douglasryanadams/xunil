@@ -28,10 +28,14 @@ Roadmap:
 - Allow users to opt in for:
     - [x] Display ID on roster
     - [ ] Display own messages in chat
+    - [x] Hit enter to send
 - Message Box
     - [ ] Create box for set amount of time
     - [ ] Read message from box
     - [ ] Delete message on read or expiration
+- Error Handling
+    - [ ] Display error states to user with instructions
+    - [ ] Alert user if sending to blank recipient
 
 Chat Communication Workflow:
 ----------------------------

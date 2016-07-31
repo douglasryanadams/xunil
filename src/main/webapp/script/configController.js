@@ -4,7 +4,6 @@
 
 var ConfigController = function (rosterSocket) {
     this.rosterSocket = rosterSocket;
-    this.showing_me = false;
 };
 
 ConfigController.prototype.init = function () {
@@ -21,4 +20,29 @@ ConfigController.prototype.init = function () {
         }
         thisConfig.rosterSocket.sendMessage(JSON.stringify(msg));
     });
+
+    $("#enter_sends").click(function () {
+        var enterSends = this.checked;
+        if (enterSends) {
+            $("#chat_input").keypress(function (k) {
+                if (k.which == 13 && !k.shiftKey) {
+                    k.preventDefault();
+                    $("#chat_submit").click();
+                }
+            });
+        } else {
+            $("#chat_input").unbind("keypress");
+        }
+    });
+
+    $("#show_my_own_messages").click(function () {
+        var showMyOwn = this.checked;
+        if (showMyOwn) {
+            clientMemory["showMyOwnMessages"] = true;
+        } else {
+            clientMemory["showMyOwnMessages"] = false;
+        }
+    });
+
+
 };
