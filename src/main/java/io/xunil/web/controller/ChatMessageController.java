@@ -1,6 +1,7 @@
 package io.xunil.web.controller;
 
 import io.xunil.web.memory.ChatSessions;
+import io.xunil.web.memory.ConnectionNegotiation;
 import io.xunil.web.memory.model.ChatSession;
 import io.xunil.web.presentation.model.ChatMessage;
 import io.xunil.web.util.JSON;
@@ -33,10 +34,18 @@ public class ChatMessageController {
             case "chat":
                 String targetId = message.getTo();
                 Session recipient = sessions.getSession(targetId).getSession();
-                // TODO If recipient does not exist, or has not been authorized (later) return error
                 message.setTo(null);
                 recipient.getAsyncRemote().sendText(JSON.getString(message));
                 log.debug("    sent chat message to target");
+                break;
+            case "acceptChat":
+                ConnectionNegotiation.answer(message.getTo(), message.getFrom(), true);
+                break;
+            case "disconnectChat":
+                // TODO unlock users, send unlock message to other session
+                break;
+            case "rejectChat":
+                ConnectionNegotiation.answer(message.getTo(), message.getFrom(), false);
                 break;
             case "registration":
                 String uuid = message.getContent();

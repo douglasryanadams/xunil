@@ -9,7 +9,7 @@ import java.util.Objects;
 @XmlRootElement
 public class ChatRegistrationRequest {
     private String randomSeed;
-    private PublicKey publicKey;
+    private String publicKey;
 
     public String getRandomSeed() {
         return randomSeed;
@@ -18,15 +18,15 @@ public class ChatRegistrationRequest {
     public void setRandomSeed(String randomSeed) {
         this.randomSeed = randomSeed;
     }
-
-    public PublicKey getPublicKey() {
+    
+    public String getPublicKey() {
         return publicKey;
     }
-
-    public void setPublicKey(PublicKey publicKey) {
+    
+    public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,19 +35,19 @@ public class ChatRegistrationRequest {
         return Objects.equals(randomSeed, that.randomSeed) &&
                 Objects.equals(publicKey, that.publicKey);
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(randomSeed, publicKey);
     }
-
+    
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ChatRegistrationRequest{");
         sb.append("randomSeed='").append(randomSeed).append('\'');
-        sb.append(", publicKey=").append(publicKey);
+        sb.append(", publicKey='").append(publicKey).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
+    
 }

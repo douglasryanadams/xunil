@@ -30,7 +30,9 @@ ChatConnectionController.prototype.init = function () {
 
     var replyToChatConnect = function (messageType) {
         var message = {
-            "type" : messageType
+            "type" : messageType,
+            "from" : clientMemory["id"],
+            "to" : clientMemory["connectedTo"]
         };
         this.chatSocket.send(JSON.stringify(message));
     };

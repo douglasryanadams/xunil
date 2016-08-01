@@ -1,7 +1,5 @@
 package io.xunil.web.memory.model;
 
-import io.xunil.web.presentation.model.PublicKey;
-
 import javax.websocket.Session;
 import java.util.Objects;
 
@@ -12,41 +10,41 @@ import java.util.Objects;
 public class ChatSession {
     private String uuid;
     private String publicName; // TODO: use later
-    private PublicKey publicKey;
+    private String publicKey;
     private Session session;
-
+    
     public String getUuid() {
         return uuid;
     }
-
+    
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-
+    
     public String getPublicName() {
         return publicName;
     }
-
+    
     public void setPublicName(String publicName) {
         this.publicName = publicName;
     }
-
-    public PublicKey getPublicKey() {
+    
+    public String getPublicKey() {
         return publicKey;
     }
-
-    public void setPublicKey(PublicKey publicKey) {
+    
+    public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
     }
-
+    
     public Session getSession() {
         return session;
     }
-
+    
     public void setSession(Session session) {
         this.session = session;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,12 +55,12 @@ public class ChatSession {
                 Objects.equals(publicKey, that.publicKey) &&
                 Objects.equals(session, that.session);
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(uuid, publicName, publicKey, session);
     }
-
+    
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ChatSession{");
@@ -73,5 +71,5 @@ public class ChatSession {
         sb.append('}');
         return sb.toString();
     }
-
+    
 }

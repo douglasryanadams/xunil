@@ -25,6 +25,10 @@ ChatSocket.prototype.messageHandler = function (event) {
             var messageRecipient = $("#message_recipient");
             messageRecipient.prop("disabled", true);
             messageRecipient.val(message["from"]);
+            clientMemory["connectedTo"] = message["from"];
+            var publicKeyJSON = message["content"];
+            var publicKeyBits = KeyMaster.getPublicKeyAsBits(publicKeyJSON);
+            clientMemory["recipientPublicKey"] = publicKeyBits;
             ChatController.displayInfoMessage("Chat Request from: " + message["from"]);
             ChatController.displayInfoMessage("You may accept or reject the request below");
             break;
@@ -37,7 +41,7 @@ ChatSocket.prototype.messageHandler = function (event) {
             $("#recipient_connect_submit").show();
             break;
         case "registration":
-            var msg = { "type" : "registration", "content" : clientMemory["id"]};
+            var msg = {"type": "registration", "content": clientMemory["id"]};
             // 'this' has become the socket itself here
             this.send(JSON.stringify(msg));
             break;

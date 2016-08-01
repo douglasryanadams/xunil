@@ -9,14 +9,11 @@ var RestClient = function (domain) {
 
 RestClient.prototype.register = function (publicKey, successCallback) {
     var randomSeed = sjcl.codec.base64.fromBits(sjcl.random.randomWords(4));
-    var pubKeyStringObject = {
-        "xAsString": sjcl.codec.base64.fromBits(publicKey.get()['x']),
-        "yAsString": sjcl.codec.base64.fromBits(publicKey.get()['y']),
-    };
+    var publicKeyString = KeyMaster.getPublicKeyAsString(publicKey);
 
     var payload = {
         "randomSeed": randomSeed,
-        "publicKey": pubKeyStringObject
+        "publicKey": publicKeyString
     };
 
     var errorCallback = function (xhr, status, error) {

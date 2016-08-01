@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <script src="../../src/main/webapp/lib/sjcl.js"></script>
+    <script src="../../src/main/webapp/lib/jquery.min.js"></script>
+    <script src="../../src/main/webapp/script/keyMaster.js"></script>
+    <script></script>
+</head>
+<body>
+Output: [<span id="output">&nbsp;</span>]
+
+<script>
+    $(document).ready(function () {
+        var message = "Hello World!";
+        var encryptedMessage = null;
+        var decryptedMessage = null;
+
+
+        var keys = KeyMaster.generateKeys();
+        console.log("Regular encrypt/decrypt test");
+
+        console.log("Keys: ", keys);
+        console.log("Unencrypted message: " + message);
+
+        encryptedMessage = KeyMaster.encryptMessage(keys["publicKey"], message);
+        console.log("Encrypted message: " + encryptedMessage);
+
+        decryptedMessage = KeyMaster.decryptMessage(keys["privateKey"], encryptedMessage);
+        console.log("Decrypted message: " + decryptedMessage);
+        console.log("");
+        console.log("--------");
+        console.log("");
+
+        console.log("JSON Intermediary encrypt/decrypt test");
+
+        var jsonKeys = KeyMaster.getPublicKeyAsString(keys["publicKey"]);
+        console.log("JSON Keys: ", keys);
+
+        keys["publicKey"] = KeyMaster.getPublicKeyAsBits(jsonKeys);
+        console.log("Keys: ", keys);
+        console.log("Unencrypted message: " + message);
+
+        encryptedMessage = KeyMaster.encryptMessage(keys["publicKey"], message);
+        console.log("Encrypted message: " + encryptedMessage);
+
+        decryptedMessage = KeyMaster.decryptMessage(keys["privateKey"], encryptedMessage);
+        console.log("Decrypted message: " + decryptedMessage);
+
+    });
+</script>
+</body>
+</html>

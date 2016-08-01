@@ -2,6 +2,8 @@ package io.xunil.web.presentation.uri;
 
 import io.xunil.web.controller.ChatController;
 import io.xunil.web.memory.ChatSessions;
+import io.xunil.web.presentation.model.ChatConnectionRequest;
+import io.xunil.web.presentation.model.ChatConnectionResponse;
 import io.xunil.web.presentation.model.ChatRegistrationRequest;
 import io.xunil.web.presentation.model.ChatRegistrationResponse;
 import org.apache.logging.log4j.LogManager;
@@ -24,15 +26,23 @@ import javax.ws.rs.core.UriInfo;
 @Produces(MediaType.APPLICATION_JSON)
 public class ChatURI {
     private static final Logger log = LogManager.getLogger(ChatURI.class);
-
+    
     @Context
     private UriInfo uri;
-
+    
     @POST
     public Response postChatClient(ChatRegistrationRequest chatRegistration) {
         log.debug("    Request: POST {}", uri.getAbsolutePath());
         ChatController controller = new ChatController(ChatSessions.getInstance());
         ChatRegistrationResponse response = controller.register(chatRegistration);
+        return Response.ok(response).build();
+    }
+    
+    @POST
+    @Path("connection")
+    public Response postChatConnection(ChatConnectionRequest chatConnectionRequest) {
+        ChatController controller = new ChatController(ChatSessions.getInstance());
+        ChatConnectionResponse response = controller.connect(chatConnectionRequest);
         return Response.ok(response).build();
     }
 }
