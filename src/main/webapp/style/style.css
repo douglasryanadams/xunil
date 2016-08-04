@@ -8,6 +8,14 @@ body {
     border-bottom: 1px solid #000;
 }
 
+#footer_content {
+    font-size: 10px;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+}
+
+
 #chat_window {
     width: 100%;
     margin-left: 0px;

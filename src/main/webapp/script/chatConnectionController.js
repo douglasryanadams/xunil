@@ -18,6 +18,7 @@ ChatConnectionController.prototype.init = function () {
             ChatController.displaySuccessMessage("Connection Accepted from: " + clientMemory["connectedTo"]);
             $("#recipient_connect_submit").hide();
             $("#recipient_disconnect_submit").show();
+            $("#chat_input").prop("disabled", false);
         } else {
             $("#message_recipient").prop("disabled", false);
             ChatController.displayErrorMessage("Connection Rejected from: " + clientMemory["connectedTo"]);
@@ -50,6 +51,7 @@ ChatConnectionController.prototype.init = function () {
         replyToChatConnect("disconnectChat");
         $("#recipient_disconnect_submit").hide();
         $("#recipient_connect_submit").show();
+        $("#chat_input").prop("disabled", true);
     };
     $("#recipient_disconnect_submit").click(disconnectEvent);
 
@@ -59,6 +61,7 @@ ChatConnectionController.prototype.init = function () {
         $("#recipient_connect_accept").hide();
         $("#recipient_connect_reject").hide();
         $("#recipient_disconnect_submit").show();
+        $("#chat_input").prop("disabled", false);
     };
     $("#recipient_connect_accept").click(acceptEvent);
 

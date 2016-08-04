@@ -23,12 +23,6 @@
 
 <div id="body_wrapper">
     <div id="header_content">
-        <p>
-            This tool is still very much under development, you can check out the progress here: <a href="https://github.com/douglasryanadams/xunil">https://github.com/douglasryanadams/xunil</a>
-        </p>
-        <p>
-            <b>WARNING:</b> this project is not complete, use at your own risk.
-        </p>
     </div>
     <div id="chat_window">
         <div class="chat_header">
@@ -36,10 +30,16 @@
             <input type="checkbox" id="show_me">Display my ID in roster list
         </div>
         <div id="chat_body">
-            <div id="chat_display"></div>
+            <div id="chat_display">
+                <ol>
+                    <li>Click on an ID on the right or type one in at the bottom.</li>
+                    <li>Click Connect</li>
+                    <li>If your target user accepts, enjoy encrypted messaging that not even this website's server can see!</li>
+                </ol>
+            </div>
             <div id="user_roster"></div>
         </div>
-        <textarea type="text" id="chat_input"></textarea>
+        <textarea type="text" id="chat_input" disabled="disabled"></textarea>
         <div id="chat_submit_wrapper">
             <input type="checkbox" id="enter_sends">Hit <span style="font-weight: bold;">Enter</span> to Send
             <input type="checkbox" id="show_my_own_messages">Show my own messages
@@ -53,6 +53,46 @@
             <input id="recipient_connect_reject" type="button" value="Reject">
             <input id="recipient_disconnect_submit" type="button" value="Disconnect">
         </div>
+    </div>
+    <div id="footer_content">
+        <p>
+            Check out the source here: <a href="https://github.com/douglasryanadams/xunil">https://github.com/douglasryanadams/xunil</a>
+        </p>
+        <hr>
+        <h4>What is it?</h4>
+        <p>
+            Xunil.io provides easy to use, totally anonymous, client based chat encryption.
+        </p>
+        <h4>How does it work?</h4>
+        <p>
+            Your browser generates a brand new public / private key pair when you load the page and registers the public key with the server and associates it with your randomly generated ID (see the top of the window).
+            That means: only you can read your messages! Even though the server receives your encrypted message, it doesn't know how to read it because it doesn't have your private key.
+            That private key is stored in the memory of your browser and is only available to you. If you close the window, that memory is cleared and no one (not even you) will be able to read those messages ever again.
+        </p>
+        <h4>Why doesn't it work like a normal chat client?</h4>
+        <p>
+            Keeping your messages safe is the first priority! That's why you have to opt in (by checking the correct box below the chat window) to send messages when you hit enter or to show your own messages on the screen.
+            That's also why you have to <i>choose</i> to show your ID in the roster. Don't want people to see you're online? They won't know until you tell them.
+            Want your friend to connect to you directly without showing your roster ID? Send it to them via some other mechanism and they can type it themselves.
+        </p>
+        <h4>What are you logging?</h4>
+        <p>
+            Almost nothing. The server only logs when chat connections are created and destroyed.
+        </p>
+        <h4>Why does it have so many bugs?</h4>
+        <p>
+            I did my best to get something out there that generally works. Most issues can be solved by closing the window and connecting again.
+            That said, this is an open source project that I encourage everyone to contribute to, or report issues for: <a href="https://github.com/douglasryanadams/xunil">https://github.com/douglasryanadams/xunil</a>
+        </p>
+        <h4>Why bother?</h4>
+        <p>
+            I was interested to see if a tool like this could work.
+        </p>
+        <h4>Can I build my own server?</h4>
+        <p>
+            Yes! Everything to deploy your own Ubuntu 14.04 server except for the private SSL key (for HTTPS) is included in the open source repo.
+            However (!!) some assembly is required, it's not a plug and play deployment. It would help to know how to read bash scripts and salt configurations.
+        </p>
     </div>
 </div>
 

@@ -36,13 +36,18 @@ public class ChatMessageController {
                 Session recipient = sessions.getSession(targetId).getSession();
                 message.setTo(null);
                 recipient.getAsyncRemote().sendText(JSON.getString(message));
-                log.debug("    sent chat message to target: {}", message); // TODO remove this line
                 break;
             case "acceptChat":
                 ConnectionNegotiation.answer(message.getTo(), message.getFrom(), true);
                 break;
             case "disconnectChat":
-                // TODO unlock users, send disconnect message to other session
+                ConnectionNegotiation.unlockUser(message.getFrom());
+                ConnectionNegotiation.unlockUser(message.getTo());
+                ChatMessage disconnect = new ChatMessage();
+                disconnect.setFrom(message.getFrom());
+                disconnect.setType("connectionClosed");
+                ChatSession otherSession = sessions.getSession(message.getTo());
+                otherSession.getSession().getAsyncRemote().sendText(JSON.getString(disconnect));
                 break;
             case "rejectChat":
                 ConnectionNegotiation.answer(message.getTo(), message.getFrom(), false);
@@ -52,7 +57,6 @@ public class ChatMessageController {
                 String websocketId = session.getId();
                 ChatSession thisChatSession = sessions.getSession(uuid);
                 if (thisChatSession == null) {
-                    // TODO: Deal with this in some sane way later
                     log.error("Invalid Chat Session attempted to register");
                     break;
                 }

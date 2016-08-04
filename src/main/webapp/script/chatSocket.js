@@ -15,8 +15,6 @@ ChatSocket.prototype.messageHandler = function (event) {
     switch (message["type"]) {
         case "chat":
             var encryptedChatContent = message["content"];
-            console.log("clientMemory: ", clientMemory);
-            console.log("encryptedChatContent: ", encryptedChatContent);
             var chatContent = KeyMaster.decryptMessage(clientMemory["privateKey"], encryptedChatContent);
             ChatController.displayMessage(chatContent);
             break;
@@ -36,6 +34,7 @@ ChatSocket.prototype.messageHandler = function (event) {
             break;
         case "connectionClosed":
             ChatController.displayInfoMessage("Chat session closed by: " + message["from"]);
+            $("#chat_input").prop("disabled", true);
             var messageRecipient = $("#message_recipient");
             messageRecipient.val("");
             messageRecipient.prop("disabled", false);
