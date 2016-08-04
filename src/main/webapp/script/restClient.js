@@ -17,8 +17,8 @@ RestClient.prototype.register = function (publicKey, successCallback) {
     };
 
     var errorCallback = function (xhr, status, error) {
-        // TODO make informative
-        ChatController.displayErrorMessage("ERROR: " + status + " | " + error);
+        var e = JSON.parse(xhr.responseText);
+        ChatController.displayErrorMessage("ERROR: " + status + " | " + e["error"]);
     };
 
     $.ajax({
@@ -39,8 +39,8 @@ RestClient.prototype.chatConnect = function (myId, targetId, successCallback) {
     };
 
     var errorCallback = function (xhr, status, error) {
-        // TODO make informative
-        ChatController.displayErrorMessage("ERROR: " + status + " | " + error);
+        var e = JSON.parse(xhr.responseText);
+        ChatController.displayErrorMessage("ERROR: " + status + " | " + e["error"]);
     };
 
     $.ajax({

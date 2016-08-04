@@ -15,20 +15,20 @@ import javax.websocket.Session;
  */
 public class ChatMessageController {
     private static final Logger log = LogManager.getLogger(ChatMessageController.class);
-
+    
     private ChatSessions sessions;
-
+    
     public ChatMessageController(ChatSessions sessions) {
         this.sessions = sessions;
     }
-
+    
     public void openChatHandshake(Session session) {
         ChatMessage message = new ChatMessage();
         message.setType("registration");
         session.getAsyncRemote().sendText(JSON.getString(message));
         log.debug("    replied to chat handshake");
     }
-
+    
     public void processMessage(ChatMessage message, Session session) {
         switch (message.getType()) {
             case "chat":
@@ -36,13 +36,13 @@ public class ChatMessageController {
                 Session recipient = sessions.getSession(targetId).getSession();
                 message.setTo(null);
                 recipient.getAsyncRemote().sendText(JSON.getString(message));
-                log.debug("    sent chat message to target");
+                log.debug("    sent chat message to target: {}", message); // TODO remove this line
                 break;
             case "acceptChat":
                 ConnectionNegotiation.answer(message.getTo(), message.getFrom(), true);
                 break;
             case "disconnectChat":
-                // TODO unlock users, send unlock message to other session
+                // TODO unlock users, send disconnect message to other session
                 break;
             case "rejectChat":
                 ConnectionNegotiation.answer(message.getTo(), message.getFrom(), false);
@@ -63,6 +63,6 @@ public class ChatMessageController {
             default:
                 log.warn("Invalid message type provided: {}", message.getType());
         }
-
+        
     }
 }

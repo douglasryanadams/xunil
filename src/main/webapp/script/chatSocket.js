@@ -15,7 +15,9 @@ ChatSocket.prototype.messageHandler = function (event) {
     switch (message["type"]) {
         case "chat":
             var encryptedChatContent = message["content"];
-            var chatContent = Keymaster.decryptMessage(clientMemory["privateKey"], encryptedChatContent);
+            console.log("clientMemory: ", clientMemory);
+            console.log("encryptedChatContent: ", encryptedChatContent);
+            var chatContent = KeyMaster.decryptMessage(clientMemory["privateKey"], encryptedChatContent);
             ChatController.displayMessage(chatContent);
             break;
         case "connectionRequest":

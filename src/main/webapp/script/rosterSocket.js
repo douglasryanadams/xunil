@@ -15,7 +15,12 @@ RosterSocket.prototype.messageHandler = function (event) {
     switch (message["type"]) {
         case "rosterUpdate":
             var roster = message["visibleRoster"];
-            $("#user_roster").html(roster.join("<br>"));
+            $("#user_roster").html("<div class='roster_item'>" + roster.join("</div><div class='roster_item'>") + "</div>");
+            $(".roster_item").unbind('click');
+            $(".roster_item").click(function () {
+                var thisUserId = $(this).html();
+                $("#message_recipient").val(thisUserId);
+            });
             break;
         default:
             console.log("ERROR: invalid message type: " + message["type"]);

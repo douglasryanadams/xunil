@@ -44,5 +44,4 @@ ConfigController.prototype.init = function () {
         }
     });
 
-
 };

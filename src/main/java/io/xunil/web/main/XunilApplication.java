@@ -17,9 +17,9 @@ import java.util.Set;
 
 @ApplicationPath("/api")
 public class XunilApplication extends Application {
-
+    
     private static final Logger log = LogManager.getLogger(XunilApplication.class);
-
+    
     @Override
     public Set<Class<?>> getClasses() {
         log.info("Loading web app classes");
@@ -30,9 +30,13 @@ public class XunilApplication extends Application {
         classes.add(BlogURI.class);
         log.debug("      - ChatURI");
         classes.add(ChatURI.class);
+        
+        log.info("    Loading Exceptioin Mappers");
+        log.debug("      - XunilExceptionMapper");
+        classes.add(XunilExceptionMapper.class);
         return classes;
     }
-
+    
     @Override
     public Map<String, Object> getProperties() {
         // Might be handy: https://jersey.java.net/documentation/latest/appendix-properties.html

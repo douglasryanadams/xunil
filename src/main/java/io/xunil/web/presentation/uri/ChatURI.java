@@ -41,6 +41,7 @@ public class ChatURI {
     @POST
     @Path("connection")
     public Response postChatConnection(ChatConnectionRequest chatConnectionRequest) {
+        log.debug("    Request: POST {}", uri.getAbsolutePath());
         ChatController controller = new ChatController(ChatSessions.getInstance());
         ChatConnectionResponse response = controller.connect(chatConnectionRequest);
         return Response.ok(response).build();

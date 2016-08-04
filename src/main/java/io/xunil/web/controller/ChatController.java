@@ -47,6 +47,7 @@ public class ChatController {
     }
     
     private ChatConnectionResponse reject(boolean timeout) {
+        log.debug("Return rejection response");
         // Delaying so that it's harder to tell the difference between a user rejecting
         // a request and a user who doesn't exist or a user already in a conversation
         Random r = new Random();
@@ -63,21 +64,23 @@ public class ChatController {
     }
     
     public ChatConnectionResponse connect(ChatConnectionRequest chatConnectionRequest) {
+        log.debug("    attempting connection: {}", chatConnectionRequest);
         String requester = chatConnectionRequest.getFrom();
         String recipient = chatConnectionRequest.getConnectWith();
         ChatSession recipientSession = chatSessions.getSession(recipient);
         ChatSession requesterSession = chatSessions.getSession(requester);
         if (null == recipientSession) {
+            log.debug("    recipient not found: {}", recipient);
             return reject(false);
         }
         
-        
-        
         if (!ConnectionNegotiation.lockUser(requester)) {
+            log.debug("    failed to get lock on requester: {} ", requester);
             return reject(false);
         }
         
         if (!ConnectionNegotiation.lockUser(recipient)) {
+            log.debug("    failed to get lock on recipient: {}", recipient);
             ConnectionNegotiation.unlockUser(requester);
             return reject(false);
         }
@@ -87,7 +90,7 @@ public class ChatController {
         ChatMessage message = new ChatMessage();
         message.setType("connectionRequest");
         message.setFrom(chatConnectionRequest.getFrom());
-        message.setContent(JSON.getString(requesterSession.getPublicKey())); // A bit of a hack
+        message.setContent(requesterSession.getPublicKey()); // A bit of a hack
         
         recipientSession.getSession().getAsyncRemote().sendText(JSON.getString(message));
         int counter = 0;
@@ -102,6 +105,7 @@ public class ChatController {
         
         Boolean answer = ConnectionNegotiation.answerConfirmed(requester, recipient);
         if (null == answer) {
+            log.debug("    connection attempt timed out");
             ConnectionNegotiation.unlockUser(requester);
             ConnectionNegotiation.unlockUser(recipient);
             return reject(true);
@@ -109,10 +113,13 @@ public class ChatController {
         
         ChatConnectionResponse response = new ChatConnectionResponse();
         if (answer) {
+            log.debug("    connection attempt accepted by user: {}", recipient);
             response.setPublicKey(recipientSession.getPublicKey());
+            response.setConnectedTo(recipient);
             response.setAnswer("accepted");
         }
         else {
+            log.debug("    connection attempt rejected by user: {}", recipient);
             ConnectionNegotiation.unlockUser(requester);
             ConnectionNegotiation.unlockUser(recipient);
             response.setAnswer("rejected");

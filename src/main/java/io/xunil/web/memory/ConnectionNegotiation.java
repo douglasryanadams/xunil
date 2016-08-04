@@ -10,14 +10,11 @@ import java.util.Random;
 public class ConnectionNegotiation {
     private ConnectionNegotiation self = new ConnectionNegotiation();
     // Requester:Recipient, Response from Target
-    private static Map<String, Boolean> responseHash;
+    private static Map<String, Boolean> responseHash = new HashMap<>();
     // User, Unique ID
-    private static Map<String, Integer> lockedUsers;
+    private static Map<String, Integer> lockedUsers = new HashMap<>();
     
-    private ConnectionNegotiation() {
-        responseHash = new HashMap<>();
-        lockedUsers = new HashMap<>();
-    }
+    private ConnectionNegotiation() {}
     
     private static String genKey(String requester, String recipient) {
         return requester + ":" + recipient;
